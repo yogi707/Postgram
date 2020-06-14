@@ -5,7 +5,7 @@ mongodb.connect(process.env.connectionstring , {useNewUrlParser: true, useUnifie
 
    module.exports=client
    const app=require('./app');
-   app.listen(process.env.port)
+   app.listen(process.env.PORT)
 
 
 })
