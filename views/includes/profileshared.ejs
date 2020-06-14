@@ -1,0 +1,25 @@
+<h2><img class="avatar-small" src="<%=profileavatar%>"> <%=profileusername%>  
+    <%if(user && !isvisitorprofile){ 
+      if(isfollowing ){ %>
+       <form class="ml-2 d-inline" action="/removefollow/<%=profileusername%>" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="btn btn-danger btn-sm">Stop Following <i class="fas fa-user-times"></i></button>
+       </form>
+
+    <%  }else
+      {%>
+       <form class="ml-2 d-inline" action="/addfollow/<%=profileusername%>" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="btn btn-primary btn-sm">Follow <i class="fas fa-user-plus"></i></button>
+         <!-- <button class="btn btn-danger btn-sm">Stop Following <i class="fas fa-user-times"></i></button> -->
+       </form>
+  <%    }
+
+    } %>
+   </h2>
+ 
+   <div class="profile-nav nav nav-tabs pt-2 mb-4">
+     <a href="/profile/<%=profileusername%>" class="profile-nav-link nav-item nav-link <%=currentpage=='posts'? 'active': '' %>">Posts: <%=counts.postcount%></a>
+     <a href="/profile/<%=profileusername %>/followers" class="profile-nav-link nav-item nav-link <%=currentpage=='followers'? 'active': '' %>">Followers: <%=counts.followercount%></a>
+     <a href="/profile/<%=profileusername %>/following" class="profile-nav-link nav-item nav-link <%=currentpage=='following'? 'active': '' %>">Following: <%=counts.followingcount%></a>
+   </div>
